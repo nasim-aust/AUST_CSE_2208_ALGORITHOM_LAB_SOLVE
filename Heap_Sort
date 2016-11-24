@@ -9,8 +9,8 @@ void heapsort(int a[],int n)
      for(int i=1;i<=n;i++) insertt(a,i);
      for(int i=n;i>=1;i--)
      {
-                      delmax(a,i,x);
-                      a[i]=x;
+         delmax(a,i,x);
+         a[i]=x;
      }
 }
 int insertt(int a[],int n)
@@ -19,8 +19,8 @@ int insertt(int a[],int n)
     int item=a[n];
     while((i>1)&&(a[i/2]<item))
     {
-                               a[i]=a[i/2];
-                               i=i/2;
+        a[i]=a[i/2];
+        i=i/2;
     }
     a[i]=item;
     return 1;
@@ -29,8 +29,8 @@ int delmax(int a[],int n,int &x)
 {
     if(n==0)
     {
-            cout<<"heap is empty:";
-            return 0;
+        cout<<"heap is empty:";
+        return 0;
     }
     x=a[1];
     a[1]=a[n];
@@ -43,10 +43,10 @@ void adjust(int a[],int i,int n)
      int item=a[i];
      while(j<=n)
      {
-                if((j<n)&&(a[j]<a[j+1])) j++;
-                if(item>a[j]) break;
-                a[j/2]=a[j];
-                j=2*j;
+         if((j<n)&&(a[j]<a[j+1])) j++;
+         if(item>a[j]) break;
+         a[j/2]=a[j];
+         j=2*j;
      }
      a[j/2]=item;
 }
