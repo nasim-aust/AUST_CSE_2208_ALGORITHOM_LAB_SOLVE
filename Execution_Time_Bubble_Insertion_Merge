@@ -1,0 +1,129 @@
+#include <bits/stdc++.h>
+#define size 10000001
+using namespace std;
+
+int a[size],b[size];
+
+void bubblesort(int a[], int n)
+{
+   for(int i=0; i<n-1; i++) for(int j=n-1; j>=i+1; j--) if(a[j] < a[j-1]) swap(a[j],a[j-1]);
+}
+
+void insertionsort(int a[], int n)
+{
+    int i,j,key;
+    for(i=1; i<=n-1; i++)
+    {
+        key = a[i];
+        j= i-1;
+        while(j >= 0 && a[j] > key)
+        {
+            a[j+1] = a[j];
+            j = j-1;
+        }
+        a[j+1] = key;
+    }
+}
+
+
+
+void merge(int a[], int p, int q, int r)
+{
+    int i, j, k;
+    int n1 = q - p + 1;
+    int n2 =  r - q;
+
+    int L[n1], R[n2];
+    for (i = 0; i < n1; i++)
+        L[i] = a[p + i];
+    for (j = 0; j < n2; j++)
+        R[j] = a[q + 1+ j];
+    i = 0;
+    j = 0;
+    k = p;
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            a[k] = L[i];
+            i++;
+        }
+        else
+        {
+            a[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1)
+    {
+        a[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2)
+    {
+        a[k] = R[j];
+        j++;
+        k++;
+    }
+}
+void mergeSort(int a[], int p, int r)
+{
+    if (p < r)
+    {
+        int q = p+(r-p)/2;
+        mergeSort(a, p, q);
+        mergeSort(a, q+1, r);
+
+        merge(a, p, q, r);
+    }
+}
+
+int main()
+{
+
+    int n,i;
+    cin >> n;
+    //int a[n],b[n];
+    srand(time(NULL));
+    for(i=0; i<n; i++)
+    {
+        a[i] = rand() % 100;
+        b[i] = a[i];
+    }
+    long start = clock();
+    bubblesort(b, n);
+    long end = clock();
+    long difference = end - start;
+    double seconds = (difference * 1.0) / CLOCKS_PER_SEC;
+    cout<<"Execution time in bubble sort:  "<<seconds<<endl;
+
+    for(i=0; i<n; i++)
+    {
+        b[i] = a[i];
+    }
+    start = clock();
+    insertionsort(b, n);
+    end = clock();
+    difference = end - start;
+    seconds = (difference * 1.0) / CLOCKS_PER_SEC;
+    cout<<"Execution time in insertion sort:  "<<seconds<<endl;
+
+    int p=0;
+    int r=n-1;
+
+    for(i=0; i<n; i++)
+    {
+        b[i] = a[i];
+    }
+    start = clock();
+    mergeSort(b, p, r);
+    end = clock();
+    difference = end - start;
+    seconds = (difference * 1.0) / CLOCKS_PER_SEC;
+     cout<<"Execution time in merge sort:  "<<seconds<<endl;
+    return 0;
+}
