@@ -1,18 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-int insertt(int a[],int n);
-int delmax(int a[],int n,int &x);
-void adjust(int a[],int i,int n);
-void heapsort(int a[],int n)
-{
-     int x;
-     for(int i=1;i<=n;i++) insertt(a,i);
-     for(int i=n;i>=1;i--)
-     {
-         delmax(a,i,x);
-         a[i]=x;
-     }
-}
+
 int insertt(int a[],int n)
 {
     int i=n;
@@ -23,18 +11,6 @@ int insertt(int a[],int n)
         i=i/2;
     }
     a[i]=item;
-    return 1;
-}
-int delmax(int a[],int n,int &x)
-{
-    if(n==0)
-    {
-        cout<<"heap is empty:";
-        return 0;
-    }
-    x=a[1];
-    a[1]=a[n];
-    adjust(a,1,n-1);
     return 1;
 }
 void adjust(int a[],int i,int n)
@@ -49,6 +25,28 @@ void adjust(int a[],int i,int n)
          j=2*j;
      }
      a[j/2]=item;
+}
+int delmax(int a[],int n,int &x)
+{
+    if(n==0)
+    {
+        cout<<"heap is empty:";
+        return 0;
+    }
+    x=a[1];
+    a[1]=a[n];
+    adjust(a,1,n-1);
+    return 1;
+}
+void heapsort(int a[],int n)
+{
+     int x;
+     for(int i=1;i<=n;i++) insertt(a,i);
+     for(int i=n;i>=1;i--)
+     {
+         delmax(a,i,x);
+         a[i]=x;
+     }
 }
 int main()
 {
