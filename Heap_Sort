@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+using namespace std;
+int insertt(int a[],int n);
+int delmax(int a[],int n,int &x);
+void adjust(int a[],int i,int n);
+void heapsort(int a[],int n)
+{
+     int x;
+     for(int i=1;i<=n;i++) insertt(a,i);
+     for(int i=n;i>=1;i--)
+     {
+                      delmax(a,i,x);
+                      a[i]=x;
+     }
+}
+int insertt(int a[],int n)
+{
+    int i=n;
+    int item=a[n];
+    while((i>1)&&(a[i/2]<item))
+    {
+                               a[i]=a[i/2];
+                               i=i/2;
+    }
+    a[i]=item;
+    return 1;
+}
+int delmax(int a[],int n,int &x)
+{
+    if(n==0)
+    {
+            cout<<"heap is empty:";
+            return 0;
+    }
+    x=a[1];
+    a[1]=a[n];
+    adjust(a,1,n-1);
+    return 1;
+}
+void adjust(int a[],int i,int n)
+{
+     int j=2*i;
+     int item=a[i];
+     while(j<=n)
+     {
+                if((j<n)&&(a[j]<a[j+1])) j++;
+                if(item>a[j]) break;
+                a[j/2]=a[j];
+                j=2*j;
+     }
+     a[j/2]=item;
+}
+int main()
+{
+    cout<<"Enter how many numbers :";
+    int n;
+    cin>>n;
+    int a[n];
+    cout<<"Enter the elements:";
+    for(int i=1;i<=n;i++) cin>>a[i];
+    heapsort(a,n);
+    cout<<"Elements after sorting:";
+    for(int i=1;i<=n;i++) cout<<a[i]<<" ";
+    return 0;
+}
