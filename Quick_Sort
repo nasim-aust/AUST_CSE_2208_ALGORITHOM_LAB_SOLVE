@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void QuickSort(int a[],int f,int l)
+{
+    int i,j;
+    if(f<l)
+    {
+        i=f+1;
+        j=l;
+        while(a[i]<a[j])i++;
+        while(a[f]<a[j])j--;
+        while(i<j)
+        {
+            swap(a[i],a[j]);
+            while(a[i]<a[j])i++;
+            while(a[f]<a[j])j--;
+        }
+        swap(a[f],a[j]);
+        QuickSort(a,f,j-1);
+        QuickSort(a,j+1,l);
+    }
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    int a[n];
+    for(int i=0; i<n; i++)cin >> a[i];
+    int p=0;
+    int r=n-1;
+    QuickSort(a,p,r);
+    for(int i=0; i<n; i++)cout <<a[i]<<" ";
+    return 0;
+}
