@@ -11,7 +11,7 @@ struct edge
     //there is an edge between u and v of weight w
 };
 
-bool operator <(edge A, edge B)
+bool operator <(edge A, edge B)//overloading operator
 {
     return A.w <B.w;
     //short edge according to weights
@@ -23,7 +23,7 @@ int p[MAXM];
 
 int find(int x)
 {
-    return (p[x]==x) ? x : find(p[x]);
+    return (p[x]==x) ? x : find(p[x]);//ternary operator
     //if(p[x] == x) return x;
     //return p[x] = find(p[x]);
 }
