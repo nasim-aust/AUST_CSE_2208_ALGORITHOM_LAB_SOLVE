@@ -1,3 +1,5 @@
+//prims algorithm-MST using matrix
+//time complexity O(n*n)
 #include<bits/stdc++.h>
 #define INF 1e9
 #define MAXM 100
