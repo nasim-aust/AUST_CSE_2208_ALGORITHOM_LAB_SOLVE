@@ -1,53 +1,71 @@
+//kruskal algorithm for MST
+//time complexity O(m log m)
 #include<bits/stdc++.h>
+#define MAXM 100
+#define pb push_back
 using namespace std;
 
-struct edge {
-    int u, v, w;
-    bool operator<(const edge& p) const
-    {
-        return w < p.w;
-    }
-};
-int pr[100];
-vector<edge> e;
-int find(int r)
+struct edge
 {
-    return (pr[r] == r) ? r : find(pr[r]);
+    int u,v,w;
+    //there is an edge between u and v of weight w
+};
+
+bool operator <(edge A, edge B)
+{
+    return A.w <B.w;
+    //short edge according to weights
 }
-int mst(int n)
+//edge list enough, no need for adjacency list
+vector < edge > e;
+//array to keep track of parents for union find.
+int p[MAXM];
+
+int find(int x)
+{
+    return (p[x]==x) ? x : find(p[x]);
+    //if(p[x] == x) return x;
+    //return p[x] = find(p[x]);
+}
+
+int kruskal(int n)
 {
     sort(e.begin(), e.end());
-    for (int i = 1; i <= n; i++)
-        pr[i] = i;
-
-    int count = 0, s = 0;
-    for (int i = 0; i < (int)e.size(); i++) {
+    //if we do not store size in a variable before the loop,then it will get TLE
+    for(int i=1; i<=n; i++)p[i]=i;
+    //int sz = e.size();
+    int ans = 0,count =0;
+    for(int i=0; i<e.size(); i++)
+    {
         int u = find(e[i].u);
         int v = find(e[i].v);
-        if (u != v) {
-            pr[u] = v;
-            count++;
-            s += e[i].w;
-            if (count == n - 1)
-                break;
+        if(u != v)
+        {
+            //union
+            p[u] = v;
+            //p[p[e[i].u]] = p[e[i].v];
+            ans += e[i].w;
         }
     }
-    return s;
+    return ans;
 }
 
 int main()
 {
-    int n, m;
-    cin >> n >> m;
-    for (int i = 1; i <= m; i++) {
-        int u, v, w;
-        cin >> u >> v >> w;
-        edge x;
-        x.u = u;
-        x.v = v;
-        x.w = w;
-        e.push_back(x);
+    int V,E;
+    cout <<"Enter vertex and edges :";
+    cin >> V >>E;//input vertex/node and edge
+    cout <<"Enter per vertex to vertex and their weight:"<<endl;
+    for(int i=1; i<=E; i++)
+    {
+        int u,v,w;
+        cin >>u >>v >>w;//vertex to vertex and their weight
+        edge get;
+        get.u = u;
+        get.v = v;
+        get.w = w;
+        e.pb(get);
     }
-    cout << mst(n) << endl;
+    cout<<"MST is : " << kruskal(V) <<endl;
     return 0;
 }
