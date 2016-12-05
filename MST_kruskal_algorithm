@@ -69,3 +69,4 @@ int main()
     cout<<"MST is : " << kruskal(V) <<endl;
     return 0;
 }
+
