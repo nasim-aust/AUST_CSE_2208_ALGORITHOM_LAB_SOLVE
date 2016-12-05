@@ -46,7 +46,7 @@ int main()
         x.u = u;
         x.v = v;
         x.w = w;
-        e.pb(x);
+        e.push_back(x);
     }
     cout << mst(n) << endl;
     return 0;
