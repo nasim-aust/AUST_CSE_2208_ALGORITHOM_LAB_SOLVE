@@ -34,7 +34,7 @@ int kruskal(int n)
     //if we do not store size in a variable before the loop,then it will get TLE
     for(int i=1; i<=n; i++)p[i]=i;
     //int sz = e.size();
-    int ans = 0,count =0;
+    int ans = 0;
     for(int i=0; i<e.size(); i++)
     {
         int u = find(e[i].u);
