@@ -14,16 +14,17 @@ int prims()
     int visited[MAXM],no_of_edges,i,min_cost,j;
 
     //create cost[][] matrix,spanning[][]
-    for(i=0;i<n;i++)
+    for(i=0;i<n;i++){
         for(j=0;j<n;j++)
         {
-            if(G[i][j]==0)
-                cost[i][j]=INF;
+            if(G[i][j]==0) cost[i][j]=INF;
             else
+            {
                 cost[i][j]=G[i][j];
                 spanning[i][j]=0;
+            }
         }
-
+    }
     //initialize visited[],distance[] and from[]
     distance[0]=0;
     visited[0]=1;
@@ -42,12 +43,13 @@ int prims()
     {
         //find the vertex at minimum distance from the tree
         min_distance=INF;
-        for(i=1;i<n;i++)
+        for(i=1;i<n;i++){
             if(visited[i]==0&&distance[i]<min_distance)
             {
                 v=i;
                 min_distance=distance[i];
             }
+        }
         u=from[v];
 
         //insert the edge in spanning tree
@@ -57,12 +59,13 @@ int prims()
         visited[v]=1;
 
         //updated the distance[] array
-        for(i=1;i<n;i++)
+        for(i=1;i<n;i++){
             if(visited[i]==0&&cost[i][v]<distance[i])
             {
                 distance[i]=cost[i][v];
                 from[i]=v;
             }
+        }
         min_cost=min_cost+cost[u][v];
     }
     return(min_cost);
@@ -77,13 +80,13 @@ int main()
     for(i=0;i<n;i++) for(j=0;j<n;j++) cin >> G[i][j];
 
     total_cost=prims();
-    //cout <<"Spanning tree matrix :" <<endl;
+    cout <<"Spanning tree matrix :" <<endl;
 
-    /*for(i=0;i<n;i++)
+    for(i=0;i<n;i++)
     {
         for(j=0;j<n;j++) cout <<spanning[i][j]<<" ";
             cout <<endl;
-    }*/
+    }
     cout << "MST is : "<<total_cost<<endl;
     return 0;
 }
@@ -96,5 +99,12 @@ The matrix :
 6 0 5 0 0 2
 0 3 6 0 0 6
 0 0 4 2 6 0
+Spanning tree matrix :
+0 3 1 0 0 0
+3 0 0 0 3 0
+1 0 0 0 0 4
+0 0 0 0 0 2
+0 3 0 0 0 0
+0 0 4 2 0 0
 MST is : 13
 */
