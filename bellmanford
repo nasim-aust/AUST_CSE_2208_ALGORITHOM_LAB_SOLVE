@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
+#define INF 1e8
 using namespace std;
-#define INT_ 555555
+
 struct edge{
     int from;
     int to;
@@ -46,7 +47,7 @@ int main()
     e[5].weight = 20;
     for(int i = 0; i <=V; i++){
         for(int j = 0; j <=V; j++){
-            a[i][j] = INT_;
+            a[i][j] = INF;
         }
     }
     for(int i = 0; i <6; i++){
@@ -68,7 +69,7 @@ int main()
     }
     /*
     for(int i = 0; i <=V; i++){
-        dist[i] = INT_;
+        dist[i] = INF;
     }
     dist[0] = 0;
     dist[1] = 1;
@@ -87,3 +88,4 @@ int main()
     */
     return 0;
 }
+
