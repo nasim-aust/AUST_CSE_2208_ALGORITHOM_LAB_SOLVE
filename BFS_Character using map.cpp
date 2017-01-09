@@ -3,7 +3,7 @@
 using namespace std;
 
 vector < char > cost[10];
-map < char,int> visit,visited;
+map < char,char> visit,visited;
 
 int main()
 {
