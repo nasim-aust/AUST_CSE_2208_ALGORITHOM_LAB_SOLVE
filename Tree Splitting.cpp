@@ -1,11 +1,13 @@
 //time complexity O(n)
+//tree splitting from sahani sir book -page 223
+//algorithm 4.4 -TVS for special case of binary trees
 #include<bits/stdc++.h>
 #define size 1001
 using namespace std;
 
 int node, tree[size], d[size], w[size][size];
 
-TVS(int T,int delta)//delta is limit
+void TVS(int T,int delta)//delta is limit
 {
 	if(tree[T]!=0)//if the tree is not empty
     {
@@ -15,28 +17,31 @@ TVS(int T,int delta)//delta is limit
             TVS(2*T,delta);
             //Delay of each vertex can only be computed if all of its child nodes delay is already completed.
 			d[T] = max(d[T],(d[2*T]+w[T][2*T]));//compute the delay of vertex T,2*T is child
+			//cout <<d[T]<<endl;
 			if( ((2*T)+1)<=node )
 			{
 				TVS( ((2*T)+1) , delta );
 				d[T] = max( d[T],( d[(2*T)+1]+w[T][(2*T)+1] ) );
+				//cout <<d[T]<<endl;
 			}
+			//cout << ( d[T] + w[(T/2)][T] ) <<endl;//delay
 		}
-		//cout<<"Tree :"<<T<<" -- "<<d[T]<<" max "<<( d[T] + w[(T/2)][T] )<<" parent "<<T/2<<" weight "<<w[(T/2)][T]<<endl;
+		//cout<<"Tree :"<<T<<" parent "<<T/2<<" weights "<<w[(T/2)][T]<<endl;
 		if(tree[T]!=1 && ( d[T] + w[(T/2)][T] )>delta )//split condition,T/2 is parent
 		{//tree[T] != 1 -> T is not the root
 			cout<<"Splitting node : ";
 			cout<<tree[T]<<endl;
-		   d[T]=0;
+		   d[T]=0;//if we do not 0 the delay of vertex T, there will be another splitting node
 		}
 	}
 }
 
 int main(){
 
-	//int delta=5;
 	cin>>node;
 
-	//given input from sahani sir book
+	//given input from sahani sir book from the figure 4.2
+	//15 nodes,10 nodes without 0
 	tree[1]=1;
 	tree[2]=2;
 	tree[3]=3;
@@ -63,7 +68,15 @@ int main(){
 	w[3][7]=w[7][3]=3;
 	w[7][14]=w[14][7]=2;
 	w[7][15]=w[15][7]=3;
-	TVS(1,5);
+	TVS(1,5);//delta 1 is 5(final),2 is 2,3 is 3,4 is 0,6 is 0
+	//at the beginning starting from cell 1
 
 	return 0;
 }
+/*
+Sample input : 15
+Sample output :
+Splitting node : 4
+Splitting node : 2
+Splitting node : 6
+*/
