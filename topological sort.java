@@ -1,11 +1,16 @@
+package topological.sort;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class Graph {
-
-  static class Node{
+/**
+ *
+ * @author Nasim
+ */
+public class TopologicalSort {
+    
+    static class Node{
     public final String name;
     public final HashSet<Edge> inEdges;
     public final HashSet<Edge> outEdges;
