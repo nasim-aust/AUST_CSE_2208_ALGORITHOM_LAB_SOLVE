@@ -67,25 +67,5 @@ int main()
                     uni(e[i].from, e[i].to);
             }
     }
-    /*
-    for(int i = 0; i <=V; i++){
-        dist[i] = INF;
-    }
-    dist[0] = 0;
-    dist[1] = 1;
-    dist[4] = 20;
-
-    for(int i = 0; i <=V-1; i++){
-        for(int j = 0;j <6; j++){
-            if(dist[e[j].to] > a[e[j].from][e[j].to] + dist[e[j].from]){
-                dist[e[j].to] = a[e[j].from][e[j].to] + dist[e[j].from];
-            }
-        }
-    }
-    for(int i = 0; i <V; i++){
-        cout<<i<<" = "<<dist[i]<<" "<<endl;
-    }
-    */
     return 0;
 }
-
