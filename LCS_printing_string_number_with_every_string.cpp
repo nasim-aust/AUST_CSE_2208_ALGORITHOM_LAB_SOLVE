@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
+#define SIZE 1001
 using namespace std;
-int a[1000][1000];
+int a[SIZE][SIZE];
 string s1, s2;
 int lcs(string s1, int l1, string s2, int l2){
     for(int i = 1; i <= l1; i++){
@@ -16,7 +17,7 @@ int lcs(string s1, int l1, string s2, int l2){
     return a[l1][l2];
 }
 
-int lcscount(int l1, int l2){
+/*int lcscount(int l1, int l2){
     if(l1 == 0 || l2 == 0){
         return 1;
     }
@@ -35,11 +36,11 @@ int lcscount(int l1, int l2){
         return lcscount(l1-1, l2);
     }
     }
-}
+}*/
 
-multiset <string> lcsgiver(int l1, int l2){
+multiset <string> lcsgiver(int l1, int l2){//data structure
     multiset <string> s;
-    multiset <string> :: iterator p;
+    multiset <string> :: iterator p;//syntax
     if(l1 == 0 || l2 == 0){
         s.insert("");
         return s;
@@ -70,10 +71,11 @@ int main()
     s1 = "ATGCTGAT";
     s2 = "TGGCATA";
     cout<<"lcs length"<<lcs(s1,s1.length(), s2, s2.length())<<endl;
-    cout<<"total lcs "<<lcscount(s1.length(), s2.length())<<endl;
+    //cout<<"total lcs "<<lcscount(s1.length(), s2.length())<<endl;
     multiset <string> s = lcsgiver(s1.length(), s2.length());
     multiset<string>::iterator p;
     p = s.begin();
+    cout<<"total lcs "<<s.size()<<" "<<endl;
     while(p!= s.end()){
         cout<<*p<<endl;
         p++;
