@@ -44,7 +44,7 @@ int Dijkstra(int N,int source,int destination){
 int main()
 {
     int N,M;
-    scanf("%d%d",&N,&M);
+    cin >>N>>M;
     for(int i=1; i<=M; i++){
         int u , v , w;
         cin >> u >> v >> w;
