@@ -1,6 +1,4 @@
-// Run time O(V*E)
-// V -> number of vertex
-// E -> number of edges
+// Time Complexity O(V*E)-- V -> number of vertex--- E -> number of edges
 #include<bits/stdc++.h>
 #include <stdio.h>
 #include <vector>
